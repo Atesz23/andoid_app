@@ -1,8 +1,6 @@
 package com.zoltanlorinczi.project_retrofit.api
 
-import com.zoltanlorinczi.project_retrofit.api.model.LoginRequestBody
-import com.zoltanlorinczi.project_retrofit.api.model.LoginResponse
-import com.zoltanlorinczi.project_retrofit.api.model.TaskResponse
+import com.zoltanlorinczi.project_retrofit.api.model.*
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -22,4 +20,7 @@ interface UserApiService {
 
     @GET(BackendConstants.GET_TASKS_URL)
     suspend fun getTasks(@Header(BackendConstants.HEADER_TOKEN) token: String): Response<List<TaskResponse>>
+
+    @POST(BackendConstants.ADD_TASK_URL)
+    suspend fun addTask(@Body loginRequest: CreateTaskRequest): Response<CreateTaskResponse>
 }

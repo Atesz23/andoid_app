@@ -5,8 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,8 +16,10 @@ import com.zoltanlorinczi.project_retorfit.R
 import com.zoltanlorinczi.project_retrofit.adapter.TasksListAdapter
 import com.zoltanlorinczi.project_retrofit.api.ThreeTrackerRepository
 import com.zoltanlorinczi.project_retrofit.api.model.TaskResponse
+import com.zoltanlorinczi.project_retrofit.viewmodel.AddTaskViewModel
 import com.zoltanlorinczi.project_retrofit.viewmodel.TasksViewModel
 import com.zoltanlorinczi.project_retrofit.viewmodel.TasksViewModelFactory
+import kotlinx.android.synthetic.main.add_task_fragment.*
 
 /**
  * Author:  Zoltan Lorinczi
@@ -29,6 +33,7 @@ class TasksListFragment : Fragment(R.layout.fragment_tasks_list), TasksListAdapt
     }
 
     private lateinit var tasksViewModel: TasksViewModel
+    private lateinit var addTaskViewModel: AddTaskViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: TasksListAdapter
 
@@ -44,13 +49,22 @@ class TasksListFragment : Fragment(R.layout.fragment_tasks_list), TasksListAdapt
             savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+
         val view = inflater.inflate(R.layout.fragment_tasks_list, container, false)
+
+        val addTaskButton: Button = view.findViewById(R.id.addTaskButton)
         recyclerView = view.findViewById(R.id.recycler_view)
         setupRecyclerView()
         tasksViewModel.products.observe(viewLifecycleOwner) {
             Log.d(TAG, "Tasks list = $it")
             adapter.setData(tasksViewModel.products.value as ArrayList<TaskResponse>)
             adapter.notifyDataSetChanged()
+        }
+
+        addTaskButton.setOnClickListener {
+            findNavController().navigate(R.id.action_listFragment_to_addTaskFragment)
+
         }
 
         return view

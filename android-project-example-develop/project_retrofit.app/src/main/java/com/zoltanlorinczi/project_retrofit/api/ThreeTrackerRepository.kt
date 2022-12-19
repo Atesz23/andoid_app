@@ -1,8 +1,6 @@
 package com.zoltanlorinczi.project_retrofit.api
 
-import com.zoltanlorinczi.project_retrofit.api.model.LoginRequestBody
-import com.zoltanlorinczi.project_retrofit.api.model.LoginResponse
-import com.zoltanlorinczi.project_retrofit.api.model.TaskResponse
+import com.zoltanlorinczi.project_retrofit.api.model.*
 import retrofit2.Response
 
 /**
@@ -21,5 +19,8 @@ class ThreeTrackerRepository {
 
     suspend fun getTasks(token: String): Response<List<TaskResponse>> {
         return RetrofitInstance.USER_API_SERVICE.getTasks(token)
+    }
+    suspend fun addTask(createTaskRequestBody: CreateTaskRequest): Response<CreateTaskResponse> {
+        return RetrofitInstance.USER_API_SERVICE.addTask(createTaskRequestBody)
     }
 }
