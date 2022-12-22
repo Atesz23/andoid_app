@@ -90,4 +90,9 @@ class TasksListFragment : Fragment(R.layout.fragment_tasks_list), TasksListAdapt
     override fun onItemLongClick(position: Int) {
 //        TODO("Not yet implemented")
     }
+
+    override fun onResume() {
+        tasksViewModel.getTasks();
+        super.onResume()
+    }
 }

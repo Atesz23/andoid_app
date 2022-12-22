@@ -65,8 +65,9 @@ class AddTaskFragment : Fragment() {
 
             addTaskViewModel.isSuccessful.observe(this.viewLifecycleOwner) {
                 Log.d("TaskAdd", "Task Added in successfully = $it")
+                findNavController().navigate(R.id.action_addTaskFragment_to_listFragment)
                 if (it) {
-                    findNavController().navigate(R.id.action_addTaskFragment_to_listFragment)
+
                 }
             }
         }

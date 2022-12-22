@@ -35,21 +35,18 @@ class AddTaskViewModel(private val repository: ThreeTrackerRepository) : ViewMod
 
     private suspend fun executeAddTask(requestBody: CreateTaskRequest) {
         try {
-            val response = withContext(Dispatchers.IO) {
-                repository.addTask(requestBody)
+            val token: String? = App.sharedPreferences.getStringValue(
+                SharedPreferencesManager.KEY_TOKEN,
+                "Empty token!"
+            )
+            val response = token?.let {
+                repository.addTask(it,requestBody)
             }
 
-            if (response.isSuccessful) {
+            if (response?.isSuccessful == true) {
                 Log.d(TAG, "Add Task response: ${response.body()}")
-
-                val responseTokenMessage = response.body()?.message
-//                responseToken?.let {
-//                    token.value = it
-//                    App.sharedPreferences.putStringValue(SharedPreferencesManager.KEY_TOKEN, it)
-//                    isSuccessful.value = true
-//                }
             } else {
-                Log.d(TAG, "Add Task error response: ${response.message()}")
+                Log.d(TAG, "Add Task error response: ${response?.message()}")
                 isSuccessful.value = false
             }
         } catch (e: Exception) {

@@ -22,5 +22,5 @@ interface UserApiService {
     suspend fun getTasks(@Header(BackendConstants.HEADER_TOKEN) token: String): Response<List<TaskResponse>>
 
     @POST(BackendConstants.ADD_TASK_URL)
-    suspend fun addTask(@Body loginRequest: CreateTaskRequest): Response<CreateTaskResponse>
+    suspend fun addTask(@Header(BackendConstants.HEADER_TOKEN) token: String,@Body loginRequest: CreateTaskRequest): Response<CreateTaskResponse>
 }

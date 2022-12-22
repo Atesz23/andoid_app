@@ -16,11 +16,10 @@ class ThreeTrackerRepository {
     suspend fun login(loginRequestBody: LoginRequestBody): Response<LoginResponse> {
         return RetrofitInstance.USER_API_SERVICE.login(loginRequestBody)
     }
-
     suspend fun getTasks(token: String): Response<List<TaskResponse>> {
         return RetrofitInstance.USER_API_SERVICE.getTasks(token)
     }
-    suspend fun addTask(createTaskRequestBody: CreateTaskRequest): Response<CreateTaskResponse> {
-        return RetrofitInstance.USER_API_SERVICE.addTask(createTaskRequestBody)
+    suspend fun addTask(token:String,createTaskRequestBody: CreateTaskRequest): Response<CreateTaskResponse> {
+        return RetrofitInstance.USER_API_SERVICE.addTask(token,createTaskRequestBody)
     }
 }

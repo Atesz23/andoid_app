@@ -21,12 +21,12 @@ class TasksViewModel(private val repository: ThreeTrackerRepository) : ViewModel
     }
 
     var products: MutableLiveData<List<TaskResponse>> = MutableLiveData()
-
+    var isLogged : MutableLiveData<Int> = MutableLiveData();
     init {
         getTasks()
     }
 
-    private fun getTasks() {
+    public fun getTasks() {
         viewModelScope.launch {
             try {
                 val token: String? = App.sharedPreferences.getStringValue(
@@ -39,16 +39,18 @@ class TasksViewModel(private val repository: ThreeTrackerRepository) : ViewModel
 
                 if (response?.isSuccessful == true) {
                     Log.d(TAG, "Get tasks response: ${response.body()}")
-
+                    isLogged.value = 0;
                     val tasksList = response.body()
                     tasksList?.let {
                         products.value = tasksList
                     }
                 } else {
+                    isLogged.value = 1;
                     Log.d(TAG, "Get tasks error response: ${response?.errorBody()}")
                 }
 
             } catch (e: Exception) {
+                isLogged.value = 1;
                 Log.d(TAG, "TasksViewModel - getTasks() failed with exception: ${e.message}")
             }
         }
