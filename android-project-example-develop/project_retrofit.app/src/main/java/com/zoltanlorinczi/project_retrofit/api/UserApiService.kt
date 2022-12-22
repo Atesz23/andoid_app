@@ -21,6 +21,9 @@ interface UserApiService {
     @GET(BackendConstants.GET_TASKS_URL)
     suspend fun getTasks(@Header(BackendConstants.HEADER_TOKEN) token: String): Response<List<TaskResponse>>
 
+    @GET(BackendConstants.GET_GROUP_URL)
+    suspend fun getGroup(@Header(BackendConstants.HEADER_TOKEN) token: String): Response<List<GroupResponse>>
+
     @POST(BackendConstants.ADD_TASK_URL)
     suspend fun addTask(@Header(BackendConstants.HEADER_TOKEN) token: String,@Body loginRequest: CreateTaskRequest): Response<CreateTaskResponse>
 }

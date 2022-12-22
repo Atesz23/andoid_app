@@ -3,4 +3,7 @@
     <dimen name="task_list_profile_image_width">50dp</dimen>
     <dimen name="task_list_profile_image_height">50dp</dimen>
     <dimen name="task_list_item_height">250dp</dimen>
+
+
+    <dimen name="group_list_item_height">100dp</dimen>
 </resources>

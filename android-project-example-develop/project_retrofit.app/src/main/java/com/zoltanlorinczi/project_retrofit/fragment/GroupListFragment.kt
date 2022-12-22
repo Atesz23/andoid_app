@@ -13,34 +13,35 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.zoltanlorinczi.project_retorfit.R
+import com.zoltanlorinczi.project_retrofit.adapter.GroupListAdapter
 import com.zoltanlorinczi.project_retrofit.adapter.TasksListAdapter
 import com.zoltanlorinczi.project_retrofit.api.ThreeTrackerRepository
+import com.zoltanlorinczi.project_retrofit.api.model.GroupResponse
 import com.zoltanlorinczi.project_retrofit.api.model.TaskResponse
-import com.zoltanlorinczi.project_retrofit.viewmodel.AddTaskViewModel
-import com.zoltanlorinczi.project_retrofit.viewmodel.TasksViewModel
-import com.zoltanlorinczi.project_retrofit.viewmodel.TasksViewModelFactory
+import com.zoltanlorinczi.project_retrofit.viewmodel.*
 import kotlinx.android.synthetic.main.add_task_fragment.*
 
 /**
  * Author:  Zoltan Lorinczi
  * Date:    12/2/2021
  */
-class TasksListFragment : Fragment(R.layout.fragment_tasks_list), TasksListAdapter.OnItemClickListener,
-        TasksListAdapter.OnItemLongClickListener {
+class GroupListFragment : Fragment(R.layout.fragment_group_list), GroupListAdapter.OnItemClickListener,
+        GroupListAdapter.OnItemLongClickListener {
 
     companion object {
         private val TAG: String = javaClass.simpleName
     }
 
-    private lateinit var tasksViewModel: TasksViewModel
-    private lateinit var addTaskViewModel: AddTaskViewModel
+//    private lateinit var tasksViewModel: TasksViewModel
+    private lateinit var groupViewModel: GroupViewModel
+//    private lateinit var addTaskViewModel: AddTaskViewModel
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: TasksListAdapter
+    private lateinit var adapter: GroupListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val factory = TasksViewModelFactory(ThreeTrackerRepository())
-        tasksViewModel = ViewModelProvider(this, factory)[TasksViewModel::class.java]
+        val factory = GroupViewModelFactory(ThreeTrackerRepository())
+        groupViewModel = ViewModelProvider(this, factory)[GroupViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -51,32 +52,22 @@ class TasksListFragment : Fragment(R.layout.fragment_tasks_list), TasksListAdapt
         // Inflate the layout for this fragment
 
 
-        val view = inflater.inflate(R.layout.fragment_tasks_list, container, false)
-
-        val addTaskButton: Button = view.findViewById(R.id.addTaskButton)
-        val listGroubButton: Button = view.findViewById(R.id.listGroubButton)
-        recyclerView = view.findViewById(R.id.recycler_view)
-        setupRecyclerView()
-        tasksViewModel.products.observe(viewLifecycleOwner) {
+        val view = inflater.inflate(R.layout.fragment_group_list, container, false)
+        recyclerView = view.findViewById(R.id.groups_view)
+        setupGroupView()
+        groupViewModel.products.observe(viewLifecycleOwner) {
             Log.d(TAG, "Tasks list = $it")
-            adapter.setData(tasksViewModel.products.value as ArrayList<TaskResponse>)
+            adapter.setData(groupViewModel.products.value as ArrayList<GroupResponse>)
             adapter.notifyDataSetChanged()
         }
 
-        addTaskButton.setOnClickListener {
-            findNavController().navigate(R.id.action_listFragment_to_addTaskFragment)
 
-        }
-        listGroubButton.setOnClickListener {
-            findNavController().navigate(R.id.action_listFragment_to_groupListFragment)
-
-        }
 
         return view
     }
 
-    private fun setupRecyclerView() {
-        adapter = TasksListAdapter(ArrayList(), requireContext(), this, this)
+    private fun setupGroupView() {
+        adapter = GroupListAdapter(ArrayList(), requireContext(), this, this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         recyclerView.addItemDecoration(
@@ -97,7 +88,7 @@ class TasksListFragment : Fragment(R.layout.fragment_tasks_list), TasksListAdapt
     }
 
     override fun onResume() {
-        tasksViewModel.getTasks();
+        groupViewModel.getGroup();
         super.onResume()
     }
 }

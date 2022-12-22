@@ -24,6 +24,9 @@
     <action
         android:id="@+id/action_listFragment_to_addTaskFragment"
         app:destination="@id/addTaskFragment" />
+    <action
+        android:id="@+id/action_listFragment_to_groupListFragment"
+        app:destination="@id/groupListFragment" />
   </fragment>
   <fragment
       android:id="@+id/addTaskFragment"
@@ -33,4 +36,8 @@
         android:id="@+id/action_addTaskFragment_to_listFragment"
         app:destination="@id/listFragment" />
   </fragment>
+  <fragment
+      android:id="@+id/groupListFragment"
+      android:name="com.zoltanlorinczi.project_retrofit.fragment.GroupListFragment"
+      android:label="GroupListFragment" />
 </navigation>
