@@ -24,6 +24,9 @@ interface UserApiService {
     @GET(BackendConstants.GET_GROUP_URL)
     suspend fun getGroup(@Header(BackendConstants.HEADER_TOKEN) token: String): Response<List<GroupResponse>>
 
+    @GET(BackendConstants.GET_PROFILE_URL)
+    suspend fun getProfile(@Header(BackendConstants.HEADER_TOKEN) token: String): Response<ProfileResponse>
+
     @POST(BackendConstants.ADD_TASK_URL)
     suspend fun addTask(@Header(BackendConstants.HEADER_TOKEN) token: String,@Body loginRequest: CreateTaskRequest): Response<CreateTaskResponse>
 }

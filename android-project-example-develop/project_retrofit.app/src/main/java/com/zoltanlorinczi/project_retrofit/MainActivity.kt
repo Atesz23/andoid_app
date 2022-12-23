@@ -3,6 +3,8 @@ package com.zoltanlorinczi.project_retrofit
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.navigation.findNavController
+import com.zoltanlorinczi.project_retorfit.R
 import com.zoltanlorinczi.project_retorfit.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,6 +16,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.bottomNavBar.setSelectedItemId(R.id.listFragment);
+
+        binding.bottomNavBar.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.activities -> {
+                    findNavController(R.id.nav_host_fragment).navigate(R.id.listFragment)
+                }
+                R.id.mytasks -> {
+                    findNavController(R.id.nav_host_fragment).navigate(R.id.groupListFragment)
+                }
+                R.id.mygroups -> {
+                    findNavController(R.id.nav_host_fragment).navigate(R.id.profileFragment)
+                }
+                else ->{
+                    false
+                }
+            }
+            true
+        }
+
     }
 
     override fun onStart() {
@@ -30,4 +53,7 @@ class MainActivity : AppCompatActivity() {
         super.onStop()
         Log.d(TAG, "onStop() called!")
     }
+
+
+
 }

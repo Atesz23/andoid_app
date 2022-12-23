@@ -43,14 +43,15 @@ class TasksViewModel(private val repository: ThreeTrackerRepository) : ViewModel
                     val tasksList = response.body()
                     tasksList?.let {
                         products.value = tasksList
+                        isLogged.value = 1;
                     }
                 } else {
-                    isLogged.value = 1;
+                    isLogged.value = 0;
                     Log.d(TAG, "Get tasks error response: ${response?.errorBody()}")
                 }
 
             } catch (e: Exception) {
-                isLogged.value = 1;
+                isLogged.value = 0;
                 Log.d(TAG, "TasksViewModel - getTasks() failed with exception: ${e.message}")
             }
         }

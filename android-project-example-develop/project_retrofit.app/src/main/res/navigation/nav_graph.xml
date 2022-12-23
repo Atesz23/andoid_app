@@ -40,4 +40,12 @@
       android:id="@+id/groupListFragment"
       android:name="com.zoltanlorinczi.project_retrofit.fragment.GroupListFragment"
       android:label="GroupListFragment" />
+  <fragment
+      android:id="@+id/profileFragment"
+      android:name="com.zoltanlorinczi.project_retrofit.fragment.ProfileFragment"
+      android:label="ProfileFragment" />
+  <fragment
+      android:id="@+id/slpashScreen"
+      android:name="com.zoltanlorinczi.project_retrofit.fragment.SlpashScreen"
+      android:label="SlpashScreen" />
 </navigation>

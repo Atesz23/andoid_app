@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.zoltanlorinczi.project_retorfit.R
 import com.zoltanlorinczi.project_retrofit.api.ThreeTrackerRepository
 import com.zoltanlorinczi.project_retrofit.viewmodel.AddTaskViewModel
@@ -28,15 +29,15 @@ class SlpashScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        taskViewModel.getTasks();
+//        taskViewModel.getTasks();
 
         taskViewModel.isLogged.observe(viewLifecycleOwner) {
             if (it == 0) {
-                //find nav to tasklist
+                findNavController().navigate(R.id.loginFragment)
             } else {
-                //find nav to loggin
+                findNavController().navigate(R.id.listFragment)
             }
         }
-        return inflater.inflate(R.layout.fragment_slpash_screen, container, false)
+        return inflater.inflate(R.layout.splash_fragment, container, false)
     }
 }

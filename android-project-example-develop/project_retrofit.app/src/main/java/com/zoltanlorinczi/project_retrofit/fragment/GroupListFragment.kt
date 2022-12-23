@@ -56,7 +56,7 @@ class GroupListFragment : Fragment(R.layout.fragment_group_list), GroupListAdapt
         recyclerView = view.findViewById(R.id.groups_view)
         setupGroupView()
         groupViewModel.products.observe(viewLifecycleOwner) {
-            Log.d(TAG, "Tasks list = $it")
+            Log.d(TAG, "Group list = $it")
             adapter.setData(groupViewModel.products.value as ArrayList<GroupResponse>)
             adapter.notifyDataSetChanged()
         }
