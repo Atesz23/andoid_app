@@ -92,43 +92,45 @@ class TasksListAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        val currentItem = list[position]
+//        val currentItem = list[position]
 
-        return if (currentItem.status == 0) {
-            TaskListItemType.SIMPLE.value
-        } else {
-            TaskListItemType.COMPLEX.value
-        }
+//        return if (currentItem.status == 0) {
+//            TaskListItemType.SIMPLE.value
+//        } else {
+//            TaskListItemType.COMPLEX.value
+//        }
+        return TaskListItemType.COMPLEX.value
     }
 
     // 3. Called many times, when we scroll the list
     override fun onBindViewHolder(holder: SimpleDataViewHolder, position: Int) {
-        if (getItemViewType(position) == TaskListItemType.COMPLEX.value) {
+//        if (getItemViewType(position) == TaskListItemType.COMPLEX.value) {
             val complexHolder = (holder as DataViewHolder)
             val currentItem = list[position]
 
             complexHolder.taskTitleTextView.text = currentItem.title
             complexHolder.taskDescriptionTextView.text = currentItem.description
 
-            when (currentItem.priority) {
-                0 -> {
-                    complexHolder.taskPriorityTextView.setBackgroundColor(Color.RED)
-                }
-                1 -> {
-                    complexHolder.taskPriorityTextView.setBackgroundColor(Color.YELLOW)
-                }
-                2 -> {
-                    complexHolder.taskPriorityTextView.setBackgroundColor(Color.GREEN)
-                }
-            }
+//            when (currentItem.priority) {
+//                0 -> {
+//                    complexHolder.taskPriorityTextView.setBackgroundColor(Color.RED)
+//                }
+//                1 -> {
+//                    complexHolder.taskPriorityTextView.setBackgroundColor(Color.YELLOW)
+//                }
+//                2 -> {
+//                    complexHolder.taskPriorityTextView.setBackgroundColor(Color.GREEN)
+//                }
+//            }
 
-            Glide.with(context)
-                .load(R.drawable.ic_launcher_background)
-                //.load("https://devinit.org/assets/img/profile-fallback.e7a6f788830c.jpg")
-                //.placeholder(R.drawable.ic_launcher_background)
-                .override(100, 100)
-                .into(complexHolder.taskOwnerProfileImage)
-        }
+//            Glide.with(context)
+//                .load(R.drawable.ic_launcher_background)
+
+//                //.load("https://devinit.org/assets/img/profile-fallback.e7a6f788830c.jpg")
+//                //.placeholder(R.drawable.ic_launcher_background)
+//                .override(100, 100)
+//                .into(complexHolder.taskOwnerProfileImage)
+//        }
     }
 
     override fun getItemCount() = list.size

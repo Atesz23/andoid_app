@@ -39,6 +39,9 @@ import kotlinx.android.synthetic.main.add_task_fragment.*
 
         Log.d("ProfileFragment", profileViewModel.profile.value.toString())
         Log.d("ProfileFragment", profileViewModel.name.toString())
+
+        val navbartitle: TextView = requireActivity().findViewById(R.id.toolbar_title)
+        navbartitle.setText("My Profile");
     }
 
     override fun onCreateView(
@@ -55,10 +58,15 @@ import kotlinx.android.synthetic.main.add_task_fragment.*
         val nameText : TextView = view.findViewById(R.id.profileName)
         val emailText : TextView = view.findViewById(R.id.profileEmail)
 
+        val phoneText : TextView = view.findViewById(R.id.profilePhone)
+        val locationText : TextView = view.findViewById(R.id.profileLocation)
+
         profileViewModel.profile.observe(viewLifecycleOwner) {
             Log.d(ProfileFragment.TAG, "Profile = $it")
             nameText.text = profileViewModel.profile.value?.firstName + " " + profileViewModel.profile.value?.lastName
             emailText.text = profileViewModel.profile.value?.emailAddress
+            phoneText.text = profileViewModel.profile.value?.phoneNumber
+            locationText.text = profileViewModel.profile.value?.location
         }
 
         val navBar : BottomNavigationView = requireActivity().findViewById(R.id.bottomNavBar)

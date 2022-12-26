@@ -10,6 +10,7 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.zoltanlorinczi.project_retorfit.R
 import com.zoltanlorinczi.project_retrofit.App
 import com.zoltanlorinczi.project_retrofit.api.ThreeTrackerRepository
@@ -45,7 +46,8 @@ class LoginFragment : Fragment() {
         val userNameEditText: EditText = view.findViewById(R.id.edittext_name_login_fragment)
         val passwordEditText: EditText = view.findViewById(R.id.edittext_password_login_fragment)
         val button: Button = view.findViewById(R.id.button_login_fragment)
-
+        val navBar : BottomNavigationView = requireActivity().findViewById(R.id.bottomNavBar)
+        navBar.visibility = View.GONE
         Log.d(
             TAG,
             "token = " + App.sharedPreferences.getStringValue(

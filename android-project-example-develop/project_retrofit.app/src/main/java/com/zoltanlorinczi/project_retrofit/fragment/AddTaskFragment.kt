@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -37,6 +39,8 @@ class AddTaskFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val factory = AddTaskViewModelFactory(ThreeTrackerRepository())
         addTaskViewModel = ViewModelProvider(this, factory)[AddTaskViewModel::class.java]
+        val navbartitle: TextView = requireActivity().findViewById(R.id.toolbar_title)
+        navbartitle.setText("ADD Tasks");
     }
 
     override fun onCreateView(
@@ -48,7 +52,14 @@ class AddTaskFragment : Fragment() {
 
         val taskName: EditText = view.findViewById(R.id.inputTaskName)
         val taskDesc: EditText = view.findViewById(R.id.inputTaskDesc)
-        val button: Button = view.findViewById(R.id.saveTaskButton)
+        val button: Button = requireActivity().findViewById(R.id.saveTaskButton)
+
+        val addIcon : ImageView = requireActivity().findViewById(R.id.add_icon)
+        addIcon.visibility = View.GONE
+        val seach : ImageView = requireActivity().findViewById(R.id.right_icon)
+        seach.visibility = View.GONE
+
+        button.visibility = View.VISIBLE
 
         Log.d(
             TAG,
@@ -65,7 +76,7 @@ class AddTaskFragment : Fragment() {
 
             addTaskViewModel.isSuccessful.observe(this.viewLifecycleOwner) {
                 Log.d("TaskAdd", "Task Added in successfully = $it")
-                findNavController().navigate(R.id.action_addTaskFragment_to_listFragment)
+                findNavController().navigate(R.id.listFragment)
                 if (it) {
 
                 }

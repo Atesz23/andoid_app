@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -42,6 +43,8 @@ class GroupListFragment : Fragment(R.layout.fragment_group_list), GroupListAdapt
         super.onCreate(savedInstanceState)
         val factory = GroupViewModelFactory(ThreeTrackerRepository())
         groupViewModel = ViewModelProvider(this, factory)[GroupViewModel::class.java]
+        val navbartitle: TextView = requireActivity().findViewById(R.id.toolbar_title)
+        navbartitle.setText("Groups");
     }
 
     override fun onCreateView(
