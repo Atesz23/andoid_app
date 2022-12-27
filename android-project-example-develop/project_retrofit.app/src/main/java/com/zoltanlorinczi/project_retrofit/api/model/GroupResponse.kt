@@ -11,5 +11,8 @@ data class GroupResponse(
     var id: Int,
 
     @SerializedName("name")
-    var name: String
+    var name: String,
+
+    var listOfUsers: List<UserResponse>? = null
 )
+

@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zoltanlorinczi.project_retrofit.App
 import com.zoltanlorinczi.project_retrofit.api.ThreeTrackerRepository
+import com.zoltanlorinczi.project_retrofit.api.model.GroupResponse
 import com.zoltanlorinczi.project_retrofit.api.model.TaskResponse
+import com.zoltanlorinczi.project_retrofit.api.model.UserResponse
 import com.zoltanlorinczi.project_retrofit.manager.SharedPreferencesManager
 import kotlinx.coroutines.launch
 
@@ -14,45 +16,45 @@ import kotlinx.coroutines.launch
  * Author:  Zoltan Lorinczi
  * Date:    12/6/2021
  */
-class TasksViewModel(private val repository: ThreeTrackerRepository) : ViewModel() {
+class UserViewModel(private val repository: ThreeTrackerRepository) : ViewModel() {
 
     companion object {
         private val TAG: String = javaClass.simpleName
     }
 
-    var tasks: MutableLiveData<List<TaskResponse>> = MutableLiveData()
+    var products: MutableLiveData<List<UserResponse>> = MutableLiveData()
     var isLogged : MutableLiveData<Int> = MutableLiveData();
     init {
-        getTasks()
+        getUser()
     }
 
-    public fun getTasks() {
+    public fun getUser() {
         viewModelScope.launch {
             try {
                 val token: String? = App.sharedPreferences.getStringValue(
-                        SharedPreferencesManager.KEY_TOKEN,
-                        "Empty token!"
+                    SharedPreferencesManager.KEY_TOKEN,
+                    "Empty token!"
                 )
                 val response = token?.let {
-                    repository.getTasks(it)
+                    repository.getUser(it)
                 }
 
                 if (response?.isSuccessful == true) {
-                    Log.d(TAG, "Get tasks response: ${response.body()}")
+                    Log.d(TAG, "Get Users response: ${response.body()}")
+
                     isLogged.value = 0;
                     val tasksList = response.body()
                     tasksList?.let {
-                        tasks.value = tasksList
-                        isLogged.value = 1;
+                        products.value = tasksList
                     }
                 } else {
-                    isLogged.value = 0;
-                    Log.d(TAG, "Get tasks error response: ${response?.errorBody()}")
+                    isLogged.value = 1;
+                    Log.d(TAG, "Get Users error response: ${response?.errorBody()}")
                 }
 
             } catch (e: Exception) {
-                isLogged.value = 0;
-                Log.d(TAG, "TasksViewModel - getTasks() failed with exception: ${e.message}")
+                isLogged.value = 1;
+                Log.d(TAG, "Userviewmodel - getUser() failed with exception: ${e.message}")
             }
         }
     }

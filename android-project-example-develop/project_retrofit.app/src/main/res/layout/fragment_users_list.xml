@@ -23,7 +23,7 @@
 <!--      tools:itemCount="10"-->
 <!--      tools:listitem="@layout/simple_group_list_item" />-->
   <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/groups_view"
+      android:id="@+id/users_view"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:layout_marginTop="64dp"

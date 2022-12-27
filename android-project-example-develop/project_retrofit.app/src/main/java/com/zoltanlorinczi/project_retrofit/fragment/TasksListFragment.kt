@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -23,7 +22,6 @@ import com.zoltanlorinczi.project_retrofit.api.model.TaskResponse
 import com.zoltanlorinczi.project_retrofit.viewmodel.AddTaskViewModel
 import com.zoltanlorinczi.project_retrofit.viewmodel.TasksViewModel
 import com.zoltanlorinczi.project_retrofit.viewmodel.TasksViewModelFactory
-import kotlinx.android.synthetic.main.add_task_fragment.*
 
 /**
  * Author:  Zoltan Lorinczi
@@ -71,9 +69,9 @@ class TasksListFragment : Fragment(R.layout.fragment_tasks_list), TasksListAdapt
 //        val listGroubButton: Button = view.findViewById(R.id.listGroubButton)
         recyclerView = view.findViewById(R.id.recycler_view)
         setupRecyclerView()
-        tasksViewModel.products.observe(viewLifecycleOwner) {
+        tasksViewModel.tasks.observe(viewLifecycleOwner) {
             Log.d(TAG, "Tasks list = $it")
-            adapter.setData(tasksViewModel.products.value as ArrayList<TaskResponse>)
+            adapter.setData(tasksViewModel.tasks.value as ArrayList<TaskResponse>)
             adapter.notifyDataSetChanged()
         }
 
@@ -108,6 +106,11 @@ class TasksListFragment : Fragment(R.layout.fragment_tasks_list), TasksListAdapt
 
     override fun onItemLongClick(position: Int) {
 //        TODO("Not yet implemented")
+        tasksViewModel.tasks.value?.get(position)?.let{
+            val action = TasksListFragmentDirections.actionListFragmentToEditTaskFragment(it)
+            findNavController().navigate(action)
+        }
+
     }
 
     override fun onResume() {

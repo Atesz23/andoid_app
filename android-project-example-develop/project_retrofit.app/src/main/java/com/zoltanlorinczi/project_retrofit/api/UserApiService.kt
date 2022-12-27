@@ -27,6 +27,10 @@ interface UserApiService {
     @GET(BackendConstants.GET_PROFILE_URL)
     suspend fun getProfile(@Header(BackendConstants.HEADER_TOKEN) token: String): Response<ProfileResponse>
 
+    @GET(BackendConstants.GET_USERS_URL)
+    suspend fun getUser(@Header(BackendConstants.HEADER_TOKEN) token: String): Response<List<UserResponse>>
+
+
     @POST(BackendConstants.ADD_TASK_URL)
     suspend fun addTask(@Header(BackendConstants.HEADER_TOKEN) token: String,@Body loginRequest: CreateTaskRequest): Response<CreateTaskResponse>
 }

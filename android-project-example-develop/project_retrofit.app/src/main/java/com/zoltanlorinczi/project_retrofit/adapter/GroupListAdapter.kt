@@ -49,7 +49,7 @@ class GroupListAdapter(
     inner class DataViewHolder(itemView: View) : SimpleDataViewHolder(itemView),
         View.OnClickListener, View.OnLongClickListener {
         val GroupTitleTextView: TextView = itemView.findViewById(R.id.group_title_view)
-
+        val Version: TextView = itemView.findViewById(R.id.version)
         init {
             itemView.setOnClickListener(this)
             itemView.setOnLongClickListener(this)
@@ -73,18 +73,18 @@ class GroupListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleDataViewHolder {
         return when (viewType) {
             TaskListItemType.SIMPLE.value -> {
-            val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.simple_group_list_item, parent, false)
-            SimpleDataViewHolder(itemView)
-        }
+                val itemView = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.simple_group_list_item, parent, false)
+                SimpleDataViewHolder(itemView)
+            }
             TaskListItemType.COMPLEX.value -> {
-            val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.simple_group_list_item, parent, false)
-            DataViewHolder(itemView)
-        }
+                val itemView = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.simple_group_list_item, parent, false)
+                DataViewHolder(itemView)
+            }
             else -> {
-            throw IllegalStateException("Type is not supported!")
-        }
+                throw IllegalStateException("Type is not supported!")
+            }
         }
 
     }
@@ -98,10 +98,19 @@ class GroupListAdapter(
     // 3. Called many times, when we scroll the list
     override fun onBindViewHolder(holder: SimpleDataViewHolder, position: Int) {
 //        if (getItemViewType(position) == TaskListItemType.COMPLEX.value) {
-            val complexHolder = (holder as DataViewHolder)
-            val currentItem = list[position]
+        val complexHolder = (holder as DataViewHolder)
+        val currentItem = list[position]
 
-            complexHolder.GroupTitleTextView.text = currentItem.name
+        complexHolder.GroupTitleTextView.text = currentItem.name
+        val userList = currentItem.listOfUsers
+        val strBuilder = StringBuilder()
+        userList?.forEach {
+            val a = it.firstName
+            val b = it.lastName
+            val aux = a.plus(" ").plus(b)
+            strBuilder.appendLine(aux)
+        }
+        complexHolder.Version.text =strBuilder
 //            Glide.with(context)
 //                .load(R.drawable.ic_launcher_background)
 //                //.load("https://devinit.org/assets/img/profile-fallback.e7a6f788830c.jpg")

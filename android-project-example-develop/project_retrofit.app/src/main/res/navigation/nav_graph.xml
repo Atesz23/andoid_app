@@ -27,6 +27,9 @@
     <action
         android:id="@+id/action_listFragment_to_groupListFragment"
         app:destination="@id/groupListFragment" />
+    <action
+        android:id="@+id/action_listFragment_to_editTaskFragment"
+        app:destination="@id/editTaskFragment" />
   </fragment>
   <fragment
       android:id="@+id/addTaskFragment"
@@ -48,4 +51,18 @@
       android:id="@+id/slpashScreen"
       android:name="com.zoltanlorinczi.project_retrofit.fragment.SlpashScreen"
       android:label="SlpashScreen" />
+  <fragment
+      android:id="@+id/usersListFragment"
+      android:name="com.zoltanlorinczi.project_retrofit.fragment.UsersListFragment"
+      android:label="UsersListFragment" />
+  <fragment
+      android:id="@+id/editTaskFragment"
+      android:name="com.zoltanlorinczi.project_retrofit.fragment.EditTaskFragment"
+      android:label="EditTaskFragment" >
+    <argument android:name="task"
+        app:argType="com.zoltanlorinczi.project_retrofit.api.model.TaskResponse"/>
+    <action
+        android:id="@+id/action_editTaskFragment_to_listFragment"
+        app:destination="@id/listFragment" />
+  </fragment>
 </navigation>

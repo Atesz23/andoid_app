@@ -1,11 +1,14 @@
 package com.zoltanlorinczi.project_retrofit.api.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 /**
  * Author:  Zoltan Lorinczi
  * Date:    11/8/2021
  */
+@Parcelize
 data class TaskResponse(
     @SerializedName("ID")
     var id: Int,
@@ -39,4 +42,4 @@ data class TaskResponse(
 
     @SerializedName("progress")
     var progress: String
-)
+):Parcelable

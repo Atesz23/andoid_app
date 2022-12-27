@@ -5,23 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.zoltanlorinczi.project_retorfit.R
-import com.zoltanlorinczi.project_retrofit.adapter.GroupListAdapter
-import com.zoltanlorinczi.project_retrofit.adapter.TasksListAdapter
 import com.zoltanlorinczi.project_retrofit.api.ThreeTrackerRepository
-import com.zoltanlorinczi.project_retrofit.api.model.GroupResponse
-import com.zoltanlorinczi.project_retrofit.api.model.TaskResponse
 import com.zoltanlorinczi.project_retrofit.viewmodel.*
-import kotlinx.android.synthetic.main.add_task_fragment.*
 
 /**
  * Author:  Zoltan Lorinczi
