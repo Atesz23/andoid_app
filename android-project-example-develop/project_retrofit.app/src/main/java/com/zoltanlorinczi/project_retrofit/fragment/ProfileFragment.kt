@@ -5,12 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.zoltanlorinczi.project_retorfit.R
+import com.zoltanlorinczi.project_retrofit.App
 import com.zoltanlorinczi.project_retrofit.api.ThreeTrackerRepository
+import com.zoltanlorinczi.project_retrofit.manager.SharedPreferencesManager
 import com.zoltanlorinczi.project_retrofit.viewmodel.*
 
 /**
@@ -61,6 +65,12 @@ import com.zoltanlorinczi.project_retrofit.viewmodel.*
 
         val navBar : BottomNavigationView = requireActivity().findViewById(R.id.bottomNavBar)
         navBar.visibility = View.VISIBLE
+
+        val logout : Button = view.findViewById(R.id.logoutButton)
+        logout.setOnClickListener {
+            App.sharedPreferences.putStringValue(SharedPreferencesManager.KEY_TOKEN, "")
+            findNavController().navigate(R.id.loginFragment)
+        }
 
         return view
     }

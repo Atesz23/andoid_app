@@ -20,6 +20,7 @@ object BackendConstants {
     const val ADD_TASK_URL = "task/create"
     const val GET_PROFILE_URL = "user"
     const val GET_USERS_URL = "users"
+    const val GET_ACTIVITIES_URL = "activity/getActivities"
 
     /**
      * Header values.

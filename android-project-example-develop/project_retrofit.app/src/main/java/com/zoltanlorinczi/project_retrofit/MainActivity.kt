@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavBar.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.activities -> {
-                    findNavController(R.id.nav_host_fragment).navigate(R.id.usersListFragment)
+                    findNavController(R.id.nav_host_fragment).navigate(R.id.activitiesListFragment)
                 }
                 R.id.mytasks -> {
                     findNavController(R.id.nav_host_fragment).navigate(R.id.listFragment)

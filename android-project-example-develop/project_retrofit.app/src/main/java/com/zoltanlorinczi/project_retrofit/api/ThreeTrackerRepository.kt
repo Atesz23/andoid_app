@@ -28,6 +28,9 @@ class ThreeTrackerRepository {
     suspend fun getUser(token: String): Response<List<UserResponse>> {
         return RetrofitInstance.USER_API_SERVICE.getUser(token)
     }
+    suspend fun getActivities(token: String): Response<List<ActivitiesResponse>> {
+        return RetrofitInstance.USER_API_SERVICE.getActivities(token)
+    }
     suspend fun addTask(token:String,createTaskRequestBody: CreateTaskRequest): Response<CreateTaskResponse> {
         return RetrofitInstance.USER_API_SERVICE.addTask(token,createTaskRequestBody)
     }

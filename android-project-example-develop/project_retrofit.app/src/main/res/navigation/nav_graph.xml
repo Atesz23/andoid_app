@@ -3,7 +3,7 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/nav_graph"
-  app:startDestination="@id/loginFragment">
+  app:startDestination="@id/slpashScreen">
 
   <fragment
     android:id="@+id/loginFragment"
@@ -65,4 +65,8 @@
         android:id="@+id/action_editTaskFragment_to_listFragment"
         app:destination="@id/listFragment" />
   </fragment>
+  <fragment
+      android:id="@+id/activitiesListFragment"
+      android:name="com.zoltanlorinczi.project_retrofit.fragment.ActivitiesListFragment"
+      android:label="ActivitiesListFragment" />
 </navigation>
