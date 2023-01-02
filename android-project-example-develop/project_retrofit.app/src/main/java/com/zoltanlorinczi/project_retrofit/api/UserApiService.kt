@@ -35,4 +35,7 @@ interface UserApiService {
 
     @POST(BackendConstants.ADD_TASK_URL)
     suspend fun addTask(@Header(BackendConstants.HEADER_TOKEN) token: String,@Body loginRequest: CreateTaskRequest): Response<CreateTaskResponse>
+
+    @POST(BackendConstants.EDIT_TASK_URL)
+    suspend fun editTask(@Header(BackendConstants.HEADER_TOKEN) token: String,@Body loginRequest: EditTaskRequest): Response<EditTaskResponse>
 }

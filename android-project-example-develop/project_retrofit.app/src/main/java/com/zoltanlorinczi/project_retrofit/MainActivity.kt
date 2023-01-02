@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         val binding: ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.bottomNavBar.setSelectedItemId(R.id.listFragment);
+        binding.bottomNavBar.setSelectedItemId(R.id.activitiesListFragment);
 
         binding.bottomNavBar.setOnNavigationItemSelectedListener {
             when(it.itemId){

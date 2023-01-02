@@ -30,6 +30,9 @@
     <action
         android:id="@+id/action_listFragment_to_editTaskFragment"
         app:destination="@id/editTaskFragment" />
+    <action
+        android:id="@+id/action_listFragment_to_descTaskFragment"
+        app:destination="@id/descTaskFragment" />
   </fragment>
   <fragment
       android:id="@+id/addTaskFragment"
@@ -69,4 +72,14 @@
       android:id="@+id/activitiesListFragment"
       android:name="com.zoltanlorinczi.project_retrofit.fragment.ActivitiesListFragment"
       android:label="ActivitiesListFragment" />
+  <fragment
+      android:id="@+id/descTaskFragment"
+      android:name="com.zoltanlorinczi.project_retrofit.fragment.DescTaskFragment"
+      android:label="DescTaskFragment" >
+    <argument android:name="task"
+        app:argType="com.zoltanlorinczi.project_retrofit.api.model.TaskResponse"/>
+    <action
+        android:id="@+id/action_descTaskFragment_to_listFragment"
+        app:destination="@id/listFragment" />
+  </fragment>
 </navigation>

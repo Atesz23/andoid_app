@@ -102,6 +102,10 @@ class TasksListFragment : Fragment(R.layout.fragment_tasks_list), TasksListAdapt
 
     override fun onItemClick(position: Int) {
 //        TODO("Not yet implemented")
+        tasksViewModel.tasks.value?.get(position)?.let{
+            val action = TasksListFragmentDirections.actionListFragmentToDescTaskFragment(it)
+            findNavController().navigate(action)
+        }
     }
 
     override fun onItemLongClick(position: Int) {

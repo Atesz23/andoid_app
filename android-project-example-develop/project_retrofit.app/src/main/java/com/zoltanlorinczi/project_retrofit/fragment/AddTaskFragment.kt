@@ -72,7 +72,7 @@ class AddTaskFragment : Fragment() {
         button.setOnClickListener {
             val Name = taskName.text.toString()
             val Desc = taskDesc.text.toString()
-            addTaskViewModel.addTask(Name,Desc,4,1,1672684299725,2,0)
+            addTaskViewModel.addTask(Name,Desc,69,1,1672684299725,2,1)
 
             addTaskViewModel.isSuccessful.observe(this.viewLifecycleOwner) {
                 Log.d("TaskAdd", "Task Added in successfully = $it")
@@ -81,6 +81,7 @@ class AddTaskFragment : Fragment() {
 
                 }
             }
+            findNavController().navigate(R.id.listFragment)
         }
 
         return view

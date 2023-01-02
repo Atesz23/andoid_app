@@ -34,4 +34,7 @@ class ThreeTrackerRepository {
     suspend fun addTask(token:String,createTaskRequestBody: CreateTaskRequest): Response<CreateTaskResponse> {
         return RetrofitInstance.USER_API_SERVICE.addTask(token,createTaskRequestBody)
     }
+    suspend fun editTask(token:String,editTaskRequestBody: EditTaskRequest): Response<EditTaskResponse> {
+        return RetrofitInstance.USER_API_SERVICE.editTask(token,editTaskRequestBody)
+    }
 }
